@@ -114,7 +114,7 @@
                                 </Grid>
 
                                 <StackPanel Grid.Row="0" Name="DetailsTop" VerticalAlignment="Top">
-                                    <Grid Name="HeaderImagesGrid" Height="{Settings CalculatedGameDetailsIndentation}" MinHeight="310">
+                                    <Grid Name="HeaderImagesGrid" Height="{Settings CalculatedGameDetailsIndentation}" MinHeight="100">
                                         <Border Panel.ZIndex="99">
                                             <Border.Style>
                                                 <Style TargetType="Border">
@@ -618,7 +618,7 @@
                                                                 </ScrollViewer>
 
                                                                 <ScrollViewer Margin="15,0,0,0" DockPanel.Dock="Left">
-                                                                    <GridEx ColumnCount="2" AutoLayoutColumns="2" RowCount="8">
+                                                                    <GridEx ColumnCount="2" AutoLayoutColumns="2" RowCount="18">
                                                                         <Label Name="PART_ElemRecentActivity" Content="{DynamicResource LOCRecentActivityLabel}" />
                                                                         <TextBlock Name="PART_TextRecentActivity" Style="{DynamicResource BaseTextBlockStyle}" VerticalAlignment="Center" />
                                                                         <Label Name="PART_ElemAdded" Content="{DynamicResource LOCDateAddedLabel}" />
@@ -635,10 +635,7 @@
                                                                         <ItemsControl Name="PART_ItemsDevelopers" MaxWidth="180" />
                                                                         <Label Name="PART_ElemPublishers" Content="{DynamicResource LOCPublisherLabel}" />
                                                                         <ItemsControl Name="PART_ItemsPublishers" MaxWidth="180" />
-                                                                    </GridEx>
-                                                                </ScrollViewer>
-                                                                <ScrollViewer Margin="15,0,0,0" DockPanel.Dock="Left">
-                                                                    <GridEx ColumnCount="2" AutoLayoutColumns="2" RowCount="9">
+
                                                                         <Label Name="PART_ElemInstallSize" Content="{DynamicResource LOCInstallSizeLabel}" />
                                                                         <TextBlock Name="PART_TextInstallSize" Style="{DynamicResource BaseTextBlockStyle}" VerticalAlignment="Center" />
                                                                         
@@ -697,6 +694,11 @@
                                                                                             Height="{Binding ElementName=PART_TextCriticScore, Path=ActualHeight}"
                                                                                             ContentTemplate="{StaticResource FiveStarScoreTemplate}"/>
                                                                         </StackPanel>
+                                                                    </GridEx>
+                                                                </ScrollViewer>
+                                                                <ScrollViewer Margin="15,0,0,0" DockPanel.Dock="Left">
+                                                                    <GridEx ColumnCount="2" AutoLayoutColumns="2" RowCount="9">
+                                                                        
 
                                                                         <Label Name="PART_ElemAgeRating" Content="{DynamicResource LOCAgeRatingLabel}" />
                                                                         <ItemsControl Name="PART_ItemsAgeRatings" />
@@ -932,49 +934,6 @@
                                                     </Grid>
                                                 </StackPanel>
 
-                                                <StackPanel Name="NewsFeed" Margin="0,0,0,15"
-                                                            Visibility="{PluginSettings Plugin=NewsViewer, Path=ReviewsAvailable, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <Label Content="{DynamicResource LOC_NewsViewer_NewsViewerControl_NewsLabel}" Style="{DynamicResource FeedSectionLabel}" />
-                                                    <Grid Background="{DynamicResource SectionContainerMainBackgroundBrush}" MinHeight="45" Margin="0,0,0,10" >
-                                                        <Border Style="{DynamicResource OutlineBorderSidePanelsBorder}" />
-                                                        <Border Style="{DynamicResource OutlineBorderMainPanels}" />
-                                                        <StackPanel Orientation="Vertical" Margin="10">
-                                                            <ContentControl x:Name="NewsViewer_NewsViewerControl" />
-                                                        </StackPanel>
-                                                    </Grid>
-                                                </StackPanel>
-                                                
-                                                <StackPanel Name="VideoFeed" Margin="0,0,0,15">
-                                                    <StackPanel.Style>
-                                                        <Style TargetType="StackPanel">
-                                                            <Setter Property="Visibility" Value="Visible" />
-                                                            <Style.Triggers>
-                                                                <DataTrigger Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsAnyVideoAvailable, FallbackValue=False}" Value="False">
-                                                                    <Setter Property="Visibility" Value="Collapsed" />
-                                                                </DataTrigger>
-                                                                <DataTrigger Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=EnableVideoPlayer, FallbackValue=False}" Value="False">
-                                                                    <Setter Property="Visibility" Value="Collapsed" />
-                                                                </DataTrigger>
-                                                                <DataTrigger Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=EnableAlternativeDetailsVideoPlayer, FallbackValue=False}" Value="True">
-                                                                    <Setter Property="Visibility" Value="Collapsed" />
-                                                                </DataTrigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </StackPanel.Style>
-                                                    <Label Content="{DynamicResource LOCExtra_Metadata_Loader_VideoLabel}" Style="{DynamicResource FeedSectionLabel}" />
-                                                    <Grid Background="{DynamicResource SectionContainerMainBackgroundBrush}" MinHeight="45" Margin="0,0,0,10" >
-                                                        <Border Style="{DynamicResource OutlineBorderSidePanelsBorder}" />
-                                                        <Border Style="{DynamicResource OutlineBorderMainPanels}" />
-                                                        <!--Rectangle used to expand the panel while the video loads-->
-                                                        <Viewbox Stretch="Uniform" Visibility="{Binding ElementName=VideoFeed, Path=Visibility}">
-                                                            <Rectangle Width="16" Height="9" Fill="Transparent" IsHitTestVisible="False" />
-                                                        </Viewbox>
-                                                        <StackPanel Orientation="Vertical" Margin="10">
-                                                            <ContentControl x:Name="ExtraMetadataLoader_VideoLoaderControl" />
-                                                        </StackPanel>
-                                                    </Grid>
-                                                </StackPanel>
-
                                                 <StackPanel Name="GameActivityFeed" Margin="0,0,0,15">
                                                     <StackPanel.Style>
                                                         <Style TargetType="StackPanel">
@@ -1019,6 +978,51 @@
                                                         </StackPanel>
                                                     </Grid>
                                                 </StackPanel>
+
+                                                <StackPanel Name="NewsFeed" Margin="0,0,0,15"
+                                                            Visibility="{PluginSettings Plugin=NewsViewer, Path=ReviewsAvailable, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                    <Label Content="{DynamicResource LOC_NewsViewer_NewsViewerControl_NewsLabel}" Style="{DynamicResource FeedSectionLabel}" />
+                                                    <Grid Background="{DynamicResource SectionContainerMainBackgroundBrush}" MinHeight="45" Margin="0,0,0,10" >
+                                                        <Border Style="{DynamicResource OutlineBorderSidePanelsBorder}" />
+                                                        <Border Style="{DynamicResource OutlineBorderMainPanels}" />
+                                                        <StackPanel Orientation="Vertical" Margin="10">
+                                                            <ContentControl x:Name="NewsViewer_NewsViewerControl" />
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </StackPanel>
+                                                
+                                                <StackPanel Name="VideoFeed" Margin="0,0,0,15">
+                                                    <StackPanel.Style>
+                                                        <Style TargetType="StackPanel">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsAnyVideoAvailable, FallbackValue=False}" Value="False">
+                                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=EnableVideoPlayer, FallbackValue=False}" Value="False">
+                                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=EnableAlternativeDetailsVideoPlayer, FallbackValue=False}" Value="True">
+                                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </StackPanel.Style>
+                                                    <Label Content="{DynamicResource LOCExtra_Metadata_Loader_VideoLabel}" Style="{DynamicResource FeedSectionLabel}" />
+                                                    <Grid Background="{DynamicResource SectionContainerMainBackgroundBrush}" MinHeight="45" Margin="0,0,0,10" >
+                                                        <Border Style="{DynamicResource OutlineBorderSidePanelsBorder}" />
+                                                        <Border Style="{DynamicResource OutlineBorderMainPanels}" />
+                                                        <!--Rectangle used to expand the panel while the video loads-->
+                                                        <Viewbox Stretch="Uniform" Visibility="{Binding ElementName=VideoFeed, Path=Visibility}">
+                                                            <Rectangle Width="16" Height="9" Fill="Transparent" IsHitTestVisible="False" />
+                                                        </Viewbox>
+                                                        <StackPanel Orientation="Vertical" Margin="10">
+                                                            <ContentControl x:Name="ExtraMetadataLoader_VideoLoaderControl" />
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </StackPanel>
+
+                                                
                                                 
                                                 <StackPanel Name="CheckDlcPanel" Margin="0,0,0,15">
                                                             <!-- Visibility="{PluginSettings Plugin=CheckDlc, Path=HasData, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}"> -->

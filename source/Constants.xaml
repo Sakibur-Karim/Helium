@@ -372,7 +372,7 @@
         <GradientStop Color="#3287e3" Offset="1"/>
     </LinearGradientBrush>
 
-    <SolidColorBrush x:Key="LibraryDetailsViewBackgroundBrush" Color="#24282f" />
+    <SolidColorBrush x:Key="LibraryDetailsViewBackgroundBrush" Color="#0024282f" />
     <SolidColorBrush x:Key="FilterPanelViewBackgroundBrush" Color="#4c515a" />
 
     
